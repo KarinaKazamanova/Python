@@ -11,10 +11,9 @@ def client_input(a):
         finally:
             return result
 
-a = -1
+a = client_input("Введите число от 1 до 7: ")
 while (a):
-    a = client_input("Введите число от 1 до 7: ")
-    if (a in range (6,8)):
+    if (a in(6,7)):
         print("Да")
         break
     elif (a in range (1,6)):
@@ -22,3 +21,4 @@ while (a):
         break
     else:
         print("Немного промахнулись. Ну ничего, всегда можно попробовать еще раз, для этого вся жизнь впереди :)")
+        a = client_input("Введите число от 1 до 7: ")
