@@ -14,14 +14,14 @@ def client_input(a):
         finally:
             return result
 
-def product(a):
+def product(number):
     c = 1
-    if (a==1):
-        return c*a
+    if (number==1):
+        return c*number
     else:
-        return product(a-1)*a
+        return product(number-1)*number
 
-b = []
+massive_of_products = []
 for i in range(1,client_input("Input your number: ")+1):
-    b.append(product(i))
-print(b)
+    massive_of_products.append(product(i))
+print(massive_of_products)
