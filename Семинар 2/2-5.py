@@ -12,3 +12,5 @@ for i in range (len(my_massiv)-1):
     my_massiv [i] = my_massiv[j]
     my_massiv[j] = temp
 print(my_massiv)
+
+# прочитала в учебнике "Алгоритмы. Теория и практическое применение"
