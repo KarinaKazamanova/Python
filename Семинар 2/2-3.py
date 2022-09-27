@@ -6,9 +6,9 @@
 import math
 def fraction(a):
     return int(round(math.pow((1 + 1/a),a),0))
-b = []
-a = 0
+massive_of_fractions = []
+sum_of_fractions = 0
 for i in range(1,int(input ("Введите число: "))+1):
-    b.append(fraction(i))
-    a = a + b[i-1]
-print(f"Для n = {i}:", b, "=>",a)
+    massive_of_fractions.append(fraction(i))
+    sum_of_fractions = sum_of_fractions + massive_of_fractions[i-1]
+print(f"Для n = {i}:", massive_of_fractions, "=>",sum_of_fractions)
