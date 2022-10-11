@@ -1,0 +1,38 @@
+from random import choice
+name = input("Введите Ваше имя: ")
+players = [0, 1] # 0 - бот, 1 - игрок
+sweets = int(input("Введите количество конфет: "))
+max_sweets = int(input("Введите максимальное количеество конфет, которое можно взять за один ход: "))
+player = choice(players)
+prev_player_step = 0
+while sweets // max_sweets:
+    if player:
+        step = int(input(f"{name}, введите колчество конфет, которое хотите взять: "))
+        while step:
+            if 0 < step <= max_sweets:
+                sweets = sweets - step
+                player = players[0]
+                prev_player_step += step
+                step = 0
+            elif step > max_sweets:
+                step = int(input(f"Вы ввели слишком много конфет. Введите не более {max_sweets}: "))
+            else:
+                step = int(input(f"Так не годится. Нужно взять хотя бы одну конфету: "))
+    else:
+        if prev_player_step == 0:
+            step = sweets % (max_sweets + 1)
+            print(f"Я взял {step} конфет. Теперь твоя очередь")
+            sweets = sweets - step
+            player = players[1]
+            step = 0
+        else:
+            step = (max_sweets + 1) - prev_player_step
+            print(f"Я взял {step} конфет. Теперь твоя очередь")
+            sweets = sweets - step
+            player = players[1]
+            step = 0
+            prev_player_step = 0
+if player:
+    print(f"Победил, {name}")
+else:
+    print(f"Победил, Бот")
