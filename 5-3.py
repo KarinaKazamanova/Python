@@ -44,12 +44,18 @@ win_flag = True
 while win_flag:
     x = int(input("Введите координату x: "))
     y = int(input("Введите координату y: "))
-    if player == 1:
-        Field = step(Field, player, x, y, players)
-        player = players[0]
-    else:
-        Field = step(Field, player, x, y, players)
-        player = players[1]
-    win_flag = win(Field)
-    print_field(Field)
+    while True:
+        if Field[x][y] == 0: 
+            if player == 1:
+                Field = step(Field, player, x, y, players)
+                player = players[0]
+            else:
+                Field = step(Field, player, x, y, players)
+                player = players[1]
+        else:
+            print("Данный ход уже был сделан.")
+            x = int(input("Введите другую координату x: "))
+            y = int(input("Введите другую координату y: "))
+        win_flag = win(Field)
+        print_field(Field)
 print(win_flag)
