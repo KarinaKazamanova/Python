@@ -38,24 +38,30 @@ def step (d, player, x, y, players):
     elif player == 0:
         d[x][y] = 'O'  
     return d
+name_1 = input("Введите Ваше имя: ")
+name_2 = input("Введите Ваше имя: ")
+names = [name_1, name_2]
 players = [0, 1]
 player = choice(players)
 win_flag = True
 while win_flag:
     x = int(input("Введите координату x: "))
     y = int(input("Введите координату y: "))
-    while True:
+    step_control = 1
+    while step_control:
         if Field[x][y] == 0: 
             if player == 1:
                 Field = step(Field, player, x, y, players)
                 player = players[0]
+                step_control = 0
             else:
                 Field = step(Field, player, x, y, players)
                 player = players[1]
+                step_control = 0
         else:
             print("Данный ход уже был сделан.")
             x = int(input("Введите другую координату x: "))
             y = int(input("Введите другую координату y: "))
         win_flag = win(Field)
         print_field(Field)
-print(win_flag)
+if player:
