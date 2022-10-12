@@ -1,0 +1,14 @@
+Field = {
+    'X ': ['X1','X2','X3'],
+    'Y1': [0, 0, 0],
+    'Y2': [0, 0, 0],
+    'Y3': [0, 0, 0]}
+def print_field(d):
+    for k, v in d.items():
+        if "X1" in v:
+            print(f"{k}", d[k][0], d[k][1], d[k][2], sep= "|")
+            print("---------")
+        else:
+            print(f"{k}", d[k][0], d[k][1], d[k][2], sep= " |")
+            print("---------")
+print_field(Field)
