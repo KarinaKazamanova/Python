@@ -40,6 +40,7 @@ def step (d, player, x, y, players):
     return d
 name_1 = input("Введите Ваше имя: ")
 name_2 = input("Введите Ваше имя: ")
+count = 0
 names = [name_1, name_2]
 players = [0, 1]
 player = choice(players)
@@ -64,4 +65,12 @@ while win_flag:
             y = int(input("Введите другую координату y: "))
         win_flag = win(Field)
         print_field(Field)
-if player:
+        count += 1
+if count < 9:
+    if player:
+        print(f"Победил {names[1]} !")
+    else:
+        print(f"Победил {names[0]} !")
+else:
+    print("Ничья !")
+
