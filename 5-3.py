@@ -30,6 +30,8 @@ def win(d):
     d[3][1] == d[3][2] == d[3][3]) and
     d[3][3] != 0):
         return False
+    elif 0 not in d:
+        return False
     else:
         return True
 def step (d, player, x, y, players):
