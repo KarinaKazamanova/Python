@@ -17,18 +17,19 @@ def client_input(a):
         finally:
             return result  
   
+
 def print_field(d):
     for k, v in d.items():
         print(k, end=' | ')
         for k_1, v_1 in d[k].items():
             if d[k][k_1] == 0: 
-                print(" ", end= " | ")
-                
+                print(" ", end= " | ")  
             else:
                 print(d[k][k_1], end= " | ")
         print()
         print("----------------")
-        
+      
+    
 def win(d):
     if ((d[1][1] == d[1][2] == d[1][3] or
     d[1][1] == d[2][1] == d[3][1] or
@@ -49,6 +50,7 @@ def win(d):
         return False
     else:
         return True
+     
         
 def step (d, player, x, y):
     clear()
@@ -73,9 +75,11 @@ def step (d, player, x, y):
         y = client_input("Введите другую координату y: ")
         return step(d, player, x, y)
 
+    
 def clear():
     os.system('cls')
-    
+   
+
 name_1 = input("Введите Ваше имя: ")
 name_2 = input("Введите Ваше имя: ")
 count = 0
