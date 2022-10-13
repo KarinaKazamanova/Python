@@ -5,6 +5,18 @@ Field = {
     1: {1: 0, 2: 0, 3: 0},
     2: {1: 0, 2: 0, 3: 0},
     3: {1: 0, 2: 0, 3: 0}}
+
+def client_input(a):
+    result = -1
+    while (result):
+        try:
+            result = int(input(a))
+        except:
+            
+            result = -1
+        finally:
+            return result  
+  
 def print_field(d):
     for k, v in d.items():
         print(k, end=' | ')
@@ -16,6 +28,7 @@ def print_field(d):
                 print(d[k][k_1], end= " | ")
         print()
         print("----------------")
+        
 def win(d):
     if ((d[1][1] == d[1][2] == d[1][3] or
     d[1][1] == d[2][1] == d[3][1] or
@@ -31,25 +44,37 @@ def win(d):
     d[3][1] == d[3][2] == d[3][3]) and
     d[3][3] != 0):
         return False
-    # Пыталась добавить ничью простым способом, но пока не выходит
-    # elif ((not (0 in d[1])) and (not (0 in d[2]))and (not (0 in d[3]))):
-        # return False
+    # Пыталась добавить ничью простым способом, но пока вышло так
+    elif d[1][1] != 0 and d[1][2] != 0 and d[1][3] != 0 and d[2][1] != 0 and d[2][2] != 0 and d[2][3] != 0 and d[3][1] != 0 and d[3][2] != 0 and d[3][3] != 0:
+        return False
     else:
         return True
+        
 def step (d, player, x, y):
-    if player == 1:
-        d[x][y] = 'X'
-    elif player == 0:
-        d[x][y] = 'O'  
-    return d
-def turn(player):
-    if player == 1:
-        player = 0
-        return player
+    clear() # Хотела ввести очистку консоли, но не работает
+    if x in range(1,4) and y in range(1,4):
+        if Field[x][y] == 0:
+            if player:
+                d[x][y] = 'X'
+                player = 0
+                return (d, player)
+            else:
+                d[x][y] = 'O'
+                player = 1
+                return (d, player)
+        else:
+            print("Данный ход уже был сделан.")
+            x = client_input("Введите другую координату x: ")
+            y = client_input("Введите другую координату y: ")
+            return step(d, player, x, y)
     else:
-        player = 1
-        return player
+        print("Введенные координаты выходят за рамки игрового поля.")
+        x = client_input("Введите другую координату x: ")
+        y = client_input("Введите другую координату y: ")
+        return step(d, player, x, y)
+
 def clear():
+    clear = lambda: os.system('cls')
     
 name_1 = input("Введите Ваше имя: ")
 name_2 = input("Введите Ваше имя: ")
@@ -60,28 +85,17 @@ player = choice(players)
 win_flag = True
 print_field(Field)
 while win_flag:
-    clear = lambda: os.system('cls') # Хотела ввести очистку консоли, пока не потестила
-    clear()
-    x = int(input("Введите координату x: "))
-    y = int(input("Введите координату y: "))
-    step_control = 1
-    while step_control:
-        if Field[x][y] == 0: 
-            Field = step(Field, player, x, y)
-            player = turn(player)
-            step_control = 0
-        
-        else:
-            print("Данный ход уже был сделан.")
-            x = int(input("Введите другую координату x: "))
-            y = int(input("Введите другую координату y: "))
-        win_flag = win(Field)
-        print_field(Field)
-        count += 1
+    x = client_input(f"{names[player]}, введите координату x: ")
+    y = client_input(f"{names[player]}, введите координату y: ")
+    Field, player = step(Field, player, x, y)
+    win_flag = win(Field)
+    print_field(Field)
+    count += 1
+
 if count < 9:
     if player:
-        print(f"Победил {names[1]} !")
+        print(f"Победил {names[0]}!")
     else:
-        print(f"Победил {names[0]} !")
+        print(f"Победил {names[1]}!")
 else:
-    print("Ничья !")
+    print("Ничья!")
