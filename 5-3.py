@@ -51,7 +51,7 @@ def win(d):
         return True
         
 def step (d, player, x, y):
-    clear() # Хотела ввести очистку консоли, но не работает
+    clear()
     if x in range(1,4) and y in range(1,4):
         if Field[x][y] == 0:
             if player:
@@ -74,7 +74,7 @@ def step (d, player, x, y):
         return step(d, player, x, y)
 
 def clear():
-    clear = lambda: os.system('cls')
+    os.system('cls')
     
 name_1 = input("Введите Ваше имя: ")
 name_2 = input("Введите Ваше имя: ")
