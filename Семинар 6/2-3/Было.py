@@ -1,0 +1,11 @@
+#Задайте список из n чисел последовательности $(1+\frac 1 n)^n$ и выведите на экран их сумму.
+
+import math
+def fraction(a):
+    return int(round(math.pow((1 + 1/a),a),0))
+massive_of_fractions = []
+sum_of_fractions = 0
+for i in range(1,int(input ("Введите число: "))+1):
+    massive_of_fractions.append(fraction(i))
+    sum_of_fractions = sum_of_fractions + massive_of_fractions[i-1]
+print(f"Для n = {i}:", massive_of_fractions, "=>",sum_of_fractions)
